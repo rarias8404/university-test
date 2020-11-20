@@ -1,26 +1,24 @@
 import React from 'react';
 import {Table} from "reactstrap";
 
-const renderTableHeader = students => {
-  let header = Object.keys(students[0]);
-  header.shift();
-  return header.map((key, index) => {
+const renderTableHeader = columns => {
+  return columns.map((key, index) => {
     return <th key={index}>{key.toUpperCase()}</th>
   });
 };
 
-const StudentsTable = ({students}) => {
+const StudentsTable = ({columns, data}) => {
   return (
     <Table striped hover responsive size="sm">
       <thead>
-      <tr>
-        {renderTableHeader(students)}
-        <th>ACTIONS</th>
-      </tr>
+        <tr>
+          {renderTableHeader(columns)}
+          <th>ACTIONS</th>
+        </tr>
       </thead>
       <tbody>
       {
-        students.map((student) => (
+        data.map((student) => (
           <tr key={student.id}>
             <td>{student.name}</td>
             <td>{student.age}</td>
