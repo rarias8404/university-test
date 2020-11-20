@@ -2,10 +2,11 @@ import React from 'react';
 import {Breadcrumb, BreadcrumbItem, Card, CardBody, CardHeader} from 'reactstrap';
 import {Link} from "react-router-dom";
 import StudentsTable from "./StudentsTable";
+import Spinner from "../common/Spinner";
 
 const columns = ['Name', 'Age', 'Sex', 'Email', 'Birthdate', 'Group', 'Birthplace'];
 
-function StudentsPage({students}) {
+const StudentsPage = ({students}) => {
   return (
     <div className="container">
       <div className="row">
@@ -25,7 +26,10 @@ function StudentsPage({students}) {
               Students List
             </CardHeader>
             <CardBody>
-              <StudentsTable columns={columns} data={students.students}/>
+              {students.loading
+                ? <Spinner />
+                : <StudentsTable columns={columns} data={students.students}/>
+              }
             </CardBody>
           </Card>
         </div>
