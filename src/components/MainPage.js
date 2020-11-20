@@ -5,11 +5,13 @@ import Header from "./common/Header";
 import Footer from "./common/Footer";
 import StudentsPage from "./Students/StudentsPage";
 import * as studentActions from '../redux/actions/studentActions';
+import * as groupActions from '../redux/actions/groupActions';
 
 class MainPage extends Component {
   componentDidMount() {
-    const {getStudents} = this.props;
+    const {getStudents, getGroups} = this.props;
     getStudents();
+    getGroups();
   }
 
   render() {
@@ -32,7 +34,8 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => ({
-  getStudents: () => { dispatch(studentActions.getStudents()) }
+  getStudents: () => { dispatch(studentActions.getStudents()) },
+  getGroups: () => { dispatch(groupActions.getGroups()) }
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(MainPage));
