@@ -28,7 +28,7 @@ const StudentsPage = ({students}) => {
             <CardBody>
               {students.loading
                 ? <Spinner />
-                : <StudentsTable columns={columns} data={students.students}/>
+                : <StudentsTable columns={columns} data={students}/>
               }
             </CardBody>
           </Card>

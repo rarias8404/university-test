@@ -6,8 +6,9 @@ export const getStudentsSuccess = students => ({
   students
 });
 
-export const getStudentsError = () => ({
-  type: actionTypes.GET_STUDENTS_FAILED
+export const getStudentsError = error => ({
+  type: actionTypes.GET_STUDENTS_FAILED,
+  error
 });
 
 export const studentsLoading = () => ({
@@ -20,7 +21,7 @@ export const getStudents = () => dispatch => {
     .then(response => {
       dispatch(getStudentsSuccess(response.data))
     })
-    .catch(() => {
-      dispatch(getStudentsError())
+    .catch(error => {
+      dispatch(getStudentsError(error))
     })
 };
