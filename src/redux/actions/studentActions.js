@@ -8,7 +8,7 @@ export const getStudentsSuccess = students => ({
 
 export const getStudentsError = error => ({
   type: actionTypes.GET_STUDENTS_FAILED,
-  error
+  error: error.message
 });
 
 export const studentsLoading = () => ({
