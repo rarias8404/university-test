@@ -1,9 +1,11 @@
 import React, {Component} from 'react';
-import {Breadcrumb, BreadcrumbItem} from 'reactstrap';
+import {Breadcrumb, BreadcrumbItem, Card, CardBody, CardHeader} from 'reactstrap';
 import {Link} from "react-router-dom";
+import StudentsTable from "./StudentsTable";
 
 class StudentsPage extends Component {
   render() {
+    const {students} = this.props;
     return (
       <div className="container">
         <div className="row">
@@ -17,8 +19,15 @@ class StudentsPage extends Component {
           </div>
         </div>
         <div className="row row-content">
-          <div className="col-12 col-md-6">
-            <h2>Students</h2>
+          <div className="col-12 col-md-10">
+            <Card>
+              <CardHeader className="bg-info text-white">
+                Students List
+              </CardHeader>
+              <CardBody>
+                <StudentsTable students={students} />
+              </CardBody>
+            </Card>
           </div>
         </div>
       </div>
