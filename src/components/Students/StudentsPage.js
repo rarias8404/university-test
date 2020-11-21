@@ -4,13 +4,32 @@ import {Breadcrumb, BreadcrumbItem, Card, CardBody, CardHeader} from 'reactstrap
 import {Link} from "react-router-dom";
 import StudentsTable from "./StudentsTable";
 import Spinner from "../common/Spinner";
+import * as studentActions from "../../redux/actions/studentActions";
+import * as groupActions from "../../redux/actions/groupActions";
+import * as cityActions from "../../redux/actions/cityActions";
 
 const columns = ['Name', 'Age', 'Sex', 'Email', 'Birthdate', 'Group', 'Birthplace'];
 
 class StudentsPage extends Component {
+  constructor(props) {
+    super(props);
+    this.handleReload = this.handleReload.bind(this);
+  }
+
+  handleReload() {
+    const {groups, cities, getStudents, getGroups, getCities} = this.props;
+    getStudents();
+    if (groups.error !== null) {
+      getGroups();
+    }
+    if (cities.error !== null) {
+      getCities();
+    }
+  }
+
 
   render() {
-    let {students, groups, cities} = this.props;
+    const {students, groups, cities} = this.props;
     return (
       <div className="container">
         <div className="row">
@@ -29,8 +48,13 @@ class StudentsPage extends Component {
               <CardHeader className="bg-info text-white">
                 Students List
                 <div className="card-header-actions">
-                  <button className="card-header-action btn">Reload <i className="fa fa-refresh fa-lg" /></button>
-                  <button className="card-header-action btn">Add <i className="fa fa-plus-square fa-lg" /></button>
+                  <button
+                    className="card-header-action btn"
+                    onClick={this.handleReload}
+                  >Reload &nbsp;
+                    <i className="fa fa-refresh fa-lg" />
+                  </button>
+                  <button className="card-header-action btn">Add &nbsp;<i className="fa fa-plus-square fa-lg" /></button>
                 </div>
               </CardHeader>
               <CardBody>
@@ -56,4 +80,10 @@ const mapStateToProps = state => {
   return {...state};
 }
 
-export default connect(mapStateToProps)(StudentsPage);
+const mapDispatchToProps = dispatch => ({
+  getStudents: () => { dispatch(studentActions.getStudents()) },
+  getGroups: () => { dispatch(groupActions.getGroups()) },
+  getCities: () => { dispatch(cityActions.getCities()) }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(StudentsPage);
