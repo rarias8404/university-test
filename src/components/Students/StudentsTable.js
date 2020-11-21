@@ -1,6 +1,6 @@
 import React from 'react';
 import {Table} from "reactstrap";
-import {getGroupNameById, getCityNameById} from "../../shared/helpers";
+import {getItemNameById} from "../../shared/helpers";
 
 const renderTableHeader = columns => {
   return columns.map((key, index) => {
@@ -18,8 +18,8 @@ const renderData = (students, groups, cities) => {
           <td>{student.sex[0].toUpperCase() + student.sex.substring(1)}</td>
           <td>{student.email}</td>
           <td>{student.birthdate}</td>
-          <td>{getGroupNameById(student.groupId, groups)}</td>
-          <td>{getCityNameById(student.cityId, cities)}</td>
+          <td>{getItemNameById(student.groupId, groups)}</td>
+          <td>{getItemNameById(student.cityId, cities)}</td>
           <td>
             <button className="card-header-action btn text-primary"><i className="fa fa-edit fa-md" /></button>
             <button className="card-header-action btn text-danger"><i className="fa fa-trash fa-md" /></button>

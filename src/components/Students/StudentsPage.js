@@ -77,7 +77,11 @@ class StudentsPage extends Component {
 }
 
 const mapStateToProps = state => {
-  return {...state};
+  return {
+    students: state.students,
+    groups: state.groups,
+    cities: state.cities,
+  };
 }
 
 const mapDispatchToProps = dispatch => ({

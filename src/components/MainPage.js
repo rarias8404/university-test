@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Header from "./common/Header";
 import Footer from "./common/Footer";
 import StudentsPage from "./Students/StudentsPage";
+import GroupsPage from "./Groups/GroupsPage";
 import * as studentActions from '../redux/actions/studentActions';
 import * as groupActions from '../redux/actions/groupActions';
 import * as cityActions from '../redux/actions/cityActions';
@@ -23,7 +24,8 @@ class MainPage extends Component {
       <div>
         <Header />
         <Switch>
-          <Route path="/students" component={StudentsPage} />
+          <Route exact path="/students" component={StudentsPage} />
+          <Route exact path="/groups" component={GroupsPage} />
           <Redirect to="/students" />
         </Switch>
         <Footer />
