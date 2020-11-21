@@ -1,6 +1,6 @@
 import React from 'react';
 import {Table} from "reactstrap";
-import {getGroupNameById} from "../../shared/helpers";
+import {getGroupNameById, getCityNameById} from "../../shared/helpers";
 
 const renderTableHeader = columns => {
   return columns.map((key, index) => {
@@ -8,7 +8,7 @@ const renderTableHeader = columns => {
   });
 };
 
-const renderData = (students, groups) => {
+const renderData = (students, groups, cities) => {
   return (
     students.error === null ? (
       students.students.map((student) => (
@@ -18,8 +18,8 @@ const renderData = (students, groups) => {
           <td>{student.sex[0].toUpperCase() + student.sex.substring(1)}</td>
           <td>{student.email}</td>
           <td>{student.birthdate}</td>
-          <td>{getGroupNameById(student.groupId, groups.groups)}</td>
-          <td>{student.cityId}</td>
+          <td>{getGroupNameById(student.groupId, groups)}</td>
+          <td>{getCityNameById(student.cityId, cities)}</td>
           <td>
             <button className="card-header-action btn text-primary"><i className="fa fa-edit fa-md" /></button>
             <button className="card-header-action btn text-danger"><i className="fa fa-trash fa-md" /></button>
@@ -34,7 +34,7 @@ const renderData = (students, groups) => {
   );
 };
 
-const StudentsTable = ({columns, students, groups}) => {
+const StudentsTable = ({columns, students, groups, cities}) => {
   return (
     <Table striped hover responsive size="sm">
       <thead>
@@ -44,7 +44,7 @@ const StudentsTable = ({columns, students, groups}) => {
         </tr>
       </thead>
       <tbody>
-        {renderData(students, groups)}
+        {renderData(students, groups, cities)}
       </tbody>
     </Table>
   );

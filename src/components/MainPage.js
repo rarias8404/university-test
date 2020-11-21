@@ -6,21 +6,22 @@ import Footer from "./common/Footer";
 import StudentsPage from "./Students/StudentsPage";
 import * as studentActions from '../redux/actions/studentActions';
 import * as groupActions from '../redux/actions/groupActions';
+import * as cityActions from '../redux/actions/cityActions';
 
 class MainPage extends Component {
   componentDidMount() {
-    const {getStudents, getGroups} = this.props;
+    const {getStudents, getGroups, getCities} = this.props;
     getStudents();
     getGroups();
+    getCities();
   }
 
   render() {
-    const {students, groups} = this.props;
     return (
       <div>
         <Header />
         <Switch>
-          <Route path="/students" component={() => <StudentsPage students={students} groups={groups}/>} />
+          <Route path="/students" component={StudentsPage} />
           <Redirect to="/students" />
         </Switch>
         <Footer />
@@ -35,7 +36,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
   getStudents: () => { dispatch(studentActions.getStudents()) },
-  getGroups: () => { dispatch(groupActions.getGroups()) }
+  getGroups: () => { dispatch(groupActions.getGroups()) },
+  getCities: () => { dispatch(cityActions.getCities()) }
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(MainPage));

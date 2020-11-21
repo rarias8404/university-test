@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { connect } from 'react-redux';
 import {Breadcrumb, BreadcrumbItem, Card, CardBody, CardHeader} from 'reactstrap';
 import {Link} from "react-router-dom";
 import StudentsTable from "./StudentsTable";
@@ -9,7 +10,7 @@ const columns = ['Name', 'Age', 'Sex', 'Email', 'Birthdate', 'Group', 'Birthplac
 class StudentsPage extends Component {
 
   render() {
-    let {students, groups} = this.props;
+    let {students, groups, cities} = this.props;
     return (
       <div className="container">
         <div className="row">
@@ -38,7 +39,8 @@ class StudentsPage extends Component {
                   <StudentsTable
                     columns={columns}
                     students={students}
-                    groups={groups}
+                    groups={groups.groups}
+                    cities={cities.cities}
                   />
                 }
               </CardBody>
@@ -50,4 +52,8 @@ class StudentsPage extends Component {
   }
 }
 
-export default StudentsPage;
+const mapStateToProps = state => {
+  return {...state};
+}
+
+export default connect(mapStateToProps)(StudentsPage);
