@@ -15,12 +15,12 @@ class MainPage extends Component {
   }
 
   render() {
-    const {students} = this.props;
+    const {students, groups} = this.props;
     return (
       <div>
         <Header />
         <Switch>
-          <Route path="/students" component={() => <StudentsPage students={students} />} />
+          <Route path="/students" component={() => <StudentsPage students={students} groups={groups}/>} />
           <Redirect to="/students" />
         </Switch>
         <Footer />

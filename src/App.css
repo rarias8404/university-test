@@ -15,7 +15,7 @@
   padding: 20px 0 20px 0;
 }
 .jumbotron {
-  padding:70px 30px 70px 30px;
+  padding:30px;
   margin:0 auto;
   background: #9575CD ;
   color:floralwhite;
@@ -29,6 +29,17 @@ address{
 
 .navbar-dark {
   background-color: #512DA8;
+}
+
+.card-header-actions {
+  display: inline-block;
+  float: right;
+  margin-right: -0.25rem;
+}
+
+.card-header-action {
+  padding: 0 0.25rem;
+  color: #47474f;
 }
 
 .loader {

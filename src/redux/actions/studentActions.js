@@ -19,9 +19,9 @@ export const getStudents = () => dispatch => {
   dispatch(studentsLoading());
   return studentApi.getStudents()
     .then(response => {
-      dispatch(getStudentsSuccess(response.data))
+      dispatch(getStudentsSuccess(response.data));
     })
     .catch(error => {
-      dispatch(getStudentsFailed(error))
+      dispatch(getStudentsFailed(error));
     })
 };
