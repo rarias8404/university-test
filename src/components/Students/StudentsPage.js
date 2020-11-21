@@ -19,10 +19,10 @@ class StudentsPage extends Component {
   handleReload() {
     const {groups, cities, getStudents, getGroups, getCities} = this.props;
     getStudents();
-    if (groups.error !== null) {
+    if (groups.loadError !== null) {
       getGroups();
     }
-    if (cities.error !== null) {
+    if (cities.loadError !== null) {
       getCities();
     }
   }

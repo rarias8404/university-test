@@ -10,7 +10,7 @@ const renderTableHeader = columns => {
 
 const renderData = (students, groups, cities) => {
   return (
-    students.error === null ? (
+    students.loadError === null ? (
       students.students.map((student) => (
         <tr key={student.id}>
           <td>{student.name}</td>
@@ -28,7 +28,7 @@ const renderData = (students, groups, cities) => {
       ))
     ) : (
       <tr>
-        <td className="text-center text-danger font-weight-bold" colSpan={8}>{students.error}</td>
+        <td className="text-center text-danger font-weight-bold" colSpan={8}>{students.loadError}</td>
       </tr>
     )
   );

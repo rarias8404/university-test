@@ -30,9 +30,9 @@ class MainPage extends Component {
   }
 }
 
-const mapStateToProps = state => {
+/*const mapStateToProps = state => {
   return {...state};
-}
+}*/
 
 const mapDispatchToProps = dispatch => ({
   getStudents: () => { dispatch(studentActions.getStudents()) },
@@ -40,4 +40,4 @@ const mapDispatchToProps = dispatch => ({
   getCities: () => { dispatch(cityActions.getCities()) }
 });
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(MainPage));
+export default withRouter(connect(null, mapDispatchToProps)(MainPage));
