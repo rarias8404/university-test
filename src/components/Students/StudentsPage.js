@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import {Breadcrumb, BreadcrumbItem, Card, CardBody, CardHeader} from 'reactstrap';
 import {Link} from "react-router-dom";
 import StudentsTable from "./StudentsTable";
+import StudentsModal from "./StudentsModal";
 import Spinner from "../common/Spinner";
 import * as studentActions from "../../redux/actions/studentActions";
 import * as groupActions from "../../redux/actions/groupActions";
@@ -13,7 +14,11 @@ const columns = ['Name', 'Age', 'Sex', 'Email', 'Birthdate', 'Group', 'Birthplac
 class StudentsPage extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      isModalOpen: false
+    }
     this.handleReload = this.handleReload.bind(this);
+    this.toggleModal = this.toggleModal.bind(this);
   }
 
   handleReload() {
@@ -27,9 +32,16 @@ class StudentsPage extends Component {
     }
   }
 
+  toggleModal() {
+    this.setState(prevState => ({
+      isModalOpen: !prevState.isModalOpen
+    }));
+  }
+
 
   render() {
     const {students, groups, cities} = this.props;
+    const {isModalOpen} = this.state;
     return (
       <div className="container">
         <div className="row">
@@ -42,8 +54,8 @@ class StudentsPage extends Component {
             <hr/>
           </div>
         </div>
-        <div className="row row-content">
-          <div className="col-12 col-md-10">
+        <div className="row row-content justify-content-center">
+          <div className="col-12">
             <Card>
               <CardHeader className="bg-info text-white">
                 Students List
@@ -54,7 +66,12 @@ class StudentsPage extends Component {
                   >Reload &nbsp;
                     <i className="fa fa-refresh fa-lg" />
                   </button>
-                  <button className="card-header-action btn">Add &nbsp;<i className="fa fa-plus-square fa-lg" /></button>
+                  <button
+                    className="card-header-action btn"
+                    onClick={this.toggleModal}
+                  >Add &nbsp;
+                    <i className="fa fa-plus-square fa-lg" />
+                  </button>
                 </div>
               </CardHeader>
               <CardBody>
@@ -65,12 +82,14 @@ class StudentsPage extends Component {
                     students={students}
                     groups={groups.groups}
                     cities={cities.cities}
+                    toggle={this.toggleModal}
                   />
                 }
               </CardBody>
             </Card>
           </div>
         </div>
+        <StudentsModal isOpen={isModalOpen} toggle={this.toggleModal} />
       </div>
     );
   }

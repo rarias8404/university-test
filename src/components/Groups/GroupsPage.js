@@ -38,8 +38,8 @@ class GroupsPage extends Component {
             <hr/>
           </div>
         </div>
-        <div className="row row-content">
-          <div className="col-12 col-md-10">
+        <div className="row row-content justify-content-center">
+          <div className="col-12 col-md-6">
             <Card>
               <CardHeader className="bg-info text-white">
                 Groups List

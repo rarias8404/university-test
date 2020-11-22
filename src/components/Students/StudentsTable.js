@@ -2,7 +2,7 @@ import React from 'react';
 import {Table} from "reactstrap";
 import {renderTableHeader, getItemNameById} from "../../shared/helpers";
 
-const renderData = (students, groups, cities) => {
+const StudentsTableData = ({students, groups, cities, toggle}) => {
   return (
     students.loadError === null ? (
       students.students.map((student) => (
@@ -15,7 +15,12 @@ const renderData = (students, groups, cities) => {
           <td>{getItemNameById(student.groupId, groups)}</td>
           <td>{getItemNameById(student.cityId, cities)}</td>
           <td>
-            <button className="card-header-action btn text-primary"><i className="fa fa-edit fa-md" /></button>
+            <button
+              className="card-header-action btn text-primary"
+              onClick={toggle}
+            >
+              <i className="fa fa-edit fa-md" />
+            </button>
             <button className="card-header-action btn text-danger"><i className="fa fa-trash fa-md" /></button>
           </td>
         </tr>
@@ -26,9 +31,9 @@ const renderData = (students, groups, cities) => {
       </tr>
     )
   );
-};
+}
 
-const StudentsTable = ({columns, students, groups, cities}) => {
+const StudentsTable = ({columns, students, groups, cities, toggle}) => {
   return (
     <Table striped hover responsive size="sm">
       <thead>
@@ -38,7 +43,12 @@ const StudentsTable = ({columns, students, groups, cities}) => {
         </tr>
       </thead>
       <tbody>
-        {renderData(students, groups, cities)}
+        <StudentsTableData
+          students={students}
+          groups={groups}
+          cities={cities}
+          toggle={toggle}
+        />
       </tbody>
     </Table>
   );
