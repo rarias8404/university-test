@@ -1,12 +1,6 @@
 import React from 'react';
 import {Table} from "reactstrap";
-import {getItemNameById} from "../../shared/helpers";
-
-const renderTableHeader = columns => {
-  return columns.map((key, index) => {
-    return <th key={index}>{key}</th>
-  });
-};
+import {renderTableHeader, getItemNameById} from "../../shared/helpers";
 
 const renderData = (students, groups, cities) => {
   return (

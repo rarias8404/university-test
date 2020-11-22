@@ -2,9 +2,14 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import {Breadcrumb, BreadcrumbItem, Card, CardBody, CardHeader} from "reactstrap";
 import {Link} from "react-router-dom";
+import GroupsTable from "./GroupsTable";
+import Spinner from "../common/Spinner";
+
+const columns = ['Group', 'Main Professor'];
 
 class GroupsPage extends Component {
   render() {
+    const {groups, professors} = this.props;
     return (
       <div className="container">
         <div className="row">
@@ -32,7 +37,14 @@ class GroupsPage extends Component {
                 </div>
               </CardHeader>
               <CardBody>
-                <h4>Table</h4>
+                {groups.loading ?
+                  <Spinner/> :
+                  <GroupsTable
+                    columns={columns}
+                    groups={groups}
+                    professors={professors.professors}
+                  />
+                }
               </CardBody>
             </Card>
           </div>
