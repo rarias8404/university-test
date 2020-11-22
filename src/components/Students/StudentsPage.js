@@ -14,11 +14,11 @@ const form = {
   id: null ,
   name: '',
   age: '',
-  sex: '',
+  sex: 'male',
   email: '',
   birthdate: new Date().toISOString(),
-  groupId: '' ,
-  cityId: ''
+  groupId: 1 ,
+  cityId: 1
 };
 
 class StudentsPage extends Component {
@@ -30,7 +30,6 @@ class StudentsPage extends Component {
     }
     this.handleReload = this.handleReload.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
-    // this.saveStudent = this.saveStudent.bind(this);
   }
 
   handleReload() {
@@ -52,12 +51,8 @@ class StudentsPage extends Component {
     }));
   }
 
-  /*saveStudent(student) {
-    this.props.saveStudent(student);
-  }*/
-
   render() {
-    const {students, groups, cities} = this.props;
+    const {students, groups, cities, saveStudent, deleteStudent} = this.props;
     const {isModalOpen, student} = this.state;
     return (
       <div className="container">
@@ -100,6 +95,7 @@ class StudentsPage extends Component {
                     groups={groups.groups}
                     cities={cities.cities}
                     toggle={this.toggleModal}
+                    deleteStudent={deleteStudent}
                   />
                 }
               </CardBody>
@@ -112,7 +108,7 @@ class StudentsPage extends Component {
           student={student}
           groups={groups.groups}
           cities={cities.cities}
-          saveStudent={this.props.saveStudent}
+          saveStudent={saveStudent}
         />
       </div>
     );
@@ -130,6 +126,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = {
   getStudents: studentActions.getStudents,
   saveStudent: studentActions.saveStudent,
+  deleteStudent: studentActions.deleteStudent,
   getGroups: groupActions.getGroups,
   getCities: cityActions.getCities
 };

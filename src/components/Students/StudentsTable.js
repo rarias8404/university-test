@@ -2,7 +2,7 @@ import React from 'react';
 import {Table} from "reactstrap";
 import {renderTableHeader, getItemNameById} from "../../shared/helpers";
 
-const StudentsTableData = ({students, groups, cities, toggle}) => {
+const StudentsTableData = ({students, groups, cities, toggle, deleteStudent}) => {
   return (
     students.loadError === null ? (
       students.students.map((student) => (
@@ -21,7 +21,12 @@ const StudentsTableData = ({students, groups, cities, toggle}) => {
             >
               <i className="fa fa-edit fa-md" />
             </button>
-            <button className="card-header-action btn text-danger"><i className="fa fa-trash fa-md" /></button>
+            <button
+              className="card-header-action btn text-danger"
+              onClick={() => deleteStudent(student.id)}
+            >
+              <i className="fa fa-trash fa-md" />
+            </button>
           </td>
         </tr>
       ))
@@ -33,7 +38,7 @@ const StudentsTableData = ({students, groups, cities, toggle}) => {
   );
 }
 
-const StudentsTable = ({columns, students, groups, cities, toggle}) => {
+const StudentsTable = ({columns, students, groups, cities, toggle, deleteStudent}) => {
   return (
     <Table striped hover responsive size="sm">
       <thead>
@@ -48,6 +53,7 @@ const StudentsTable = ({columns, students, groups, cities, toggle}) => {
           groups={groups}
           cities={cities}
           toggle={toggle}
+          deleteStudent={deleteStudent}
         />
       </tbody>
     </Table>

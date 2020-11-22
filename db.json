@@ -6,7 +6,7 @@
       "age": 22,
       "sex": "male",
       "email": "pepe@test.net",
-      "birthdate": "20/02/1998",
+      "birthdate": "20-02-1998",
       "groupId": 1,
       "cityId": 2
     },
@@ -16,7 +16,7 @@
       "age": 21,
       "sex": "male",
       "email": "juan@test.net",
-      "birthdate": "15/04/1999",
+      "birthdate": "15-04-1999",
       "groupId": 1,
       "cityId": 1
     },
@@ -26,7 +26,7 @@
       "age": 22,
       "sex": "female",
       "email": "jane@test.net",
-      "birthdate": "03/05/1998",
+      "birthdate": "03-05-1998",
       "groupId": 2,
       "cityId": 3
     },
@@ -36,19 +36,9 @@
       "age": 23,
       "sex": "male",
       "email": "john@test.net",
-      "birthdate": "20/10/1997",
+      "birthdate": "20-10-1997",
       "groupId": 3,
       "cityId": 1
-    },
-    {
-      "id": 5,
-      "name": "Naty",
-      "age": 10,
-      "sex": "female",
-      "email": "naty@gmail.com",
-      "birthdate": "2010-01-07",
-      "groupId": "1",
-      "cityId": 3
     }
   ],
   "groups": [

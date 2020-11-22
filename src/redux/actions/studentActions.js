@@ -25,6 +25,16 @@ export const createStudentFailed = error => ({
   error: error.message
 });
 
+export const deleteStudentSuccess = id => ({
+  type: actionTypes.DELETE_STUDENT_SUCCESS,
+  id
+});
+
+export const deleteStudentFailed = error => ({
+  type: actionTypes.DELETE_STUDENT_FAILED,
+  error: error.message
+});
+
 export function getStudents() {
   return dispatch => {
     dispatch(studentsLoading());
@@ -47,6 +57,19 @@ export function saveStudent(student) {
       })
       .catch(error => {
         dispatch(createStudentFailed(error));
+      })
+  }
+}
+
+export function deleteStudent(id) {
+  return dispatch => {
+    dispatch(studentsLoading());
+    studentApi.deleteStudent(id)
+      .then(() => {
+        dispatch(deleteStudentSuccess(id));
+      })
+      .catch(error => {
+        dispatch(deleteStudentFailed(error));
       })
   }
 }

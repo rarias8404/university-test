@@ -8,3 +8,7 @@ export const getStudents = () => {
 export const addStudent = student => {
   return axios.post(`${baseUrl}students`, student);
 };
+
+export const deleteStudent = id => {
+  return axios.delete(`${baseUrl}students/${id}`)
+};

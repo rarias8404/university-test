@@ -28,34 +28,54 @@ const StudentsModal = (props) => {
     setForm(data);
   }
 
+  const isValidName = () => {
+    return !(form.name.length < 3 || form.name.length > 20);
+  }
+
+  const isValidEmail = () => {
+    return /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(form.email);
+  }
+
   const handleBlur = field => evt => {
     if (field === 'name') {
-      if (form.name.length < 3)
-        setErrors({...errors, [field]: 'Name should be >= 3 characters'});
-      else if (form.name.length > 20)
-        setErrors({...errors, [field]: 'Name should be <= 20 characters'});
+      if (!isValidName(field))
+        setErrors({...errors, [field]: 'Name should be between 3 and 20 characters'});
       else setErrors({...errors, [field]: ''});
     }
     if (field === 'email') {
-      if (!(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(form.email)))
+      if (!isValidEmail(field))
         setErrors({...errors, [field]: 'Invalid Email'});
       else setErrors({...errors, [field]: ''});
     }
   }
 
   const handleSubmit = (event) => {
-    console.log(form);
-    const {saveStudent, toggle} = props;
-    saveStudent(form);
-    toggle();
+    if (isValidName() && isValidEmail()) {
+      const student = {...form};
+      //calcular edad a partir de la fecha de nacimiento
+      student.age = 30;
+      //formatear fecha
+      const {saveStudent, toggle} = props;
+      saveStudent(student);
+      toggle();
+    }
     event.preventDefault();
+  }
+
+  const handleToggle = () => {
+    const {toggle} = props;
+    setErrors({
+      name: '',
+      email: '',
+    });
+    toggle();
   }
 
   return (
     <div className="container">
       <div className="row">
-        <Modal isOpen={props.isOpen} toggle={props.toggle}>
-          <ModalHeader toggle={props.toggle}>
+        <Modal isOpen={props.isOpen} toggle={handleToggle}>
+          <ModalHeader toggle={handleToggle}>
             {
               form.id ? 'Edit Student' : 'Add New Student'
             }
