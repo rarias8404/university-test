@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {Modal, ModalHeader, ModalBody, Form, FormGroup, FormFeedback, Label, Col, Input, Button} from 'reactstrap';
+import DatePicker from "reactstrap-date-picker";
 
 const RenderSelect = ({items}) => (
   items.map(item => (
@@ -9,9 +10,9 @@ const RenderSelect = ({items}) => (
 
 const StudentsModal = (props) => {
   const [form, setForm] = useState({...props.student});
-  const [touched, setTouched] = useState({
-    name: false,
-    email: false,
+  const [errors, setErrors] = useState({
+    name: '',
+    email: '',
   });
 
   useEffect(() => {
@@ -22,8 +23,25 @@ const StudentsModal = (props) => {
     setForm({...form, [event.target.name]: event.target.value});
   }
 
-  const handleBlur = field => evt => {
+  const handleDateChange = (value) => {
+    let data = {...form, birthdate: value}
+    setForm(data);
+  }
 
+  const handleBlur = field => evt => {
+    debugger;
+    if (field === 'name') {
+      if (form.name.length < 3)
+        setErrors({...errors, [field]: 'Name should be >= 3 characters'});
+      else if (form.name.length > 20)
+        setErrors({...errors, [field]: 'Name should be <= 20 characters'});
+      else setErrors({...errors, [field]: ''});
+    }
+    if (field === 'email') {
+      if (!(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(form.email)))
+        setErrors({...errors, [field]: 'Invalid Email'});
+      else setErrors({...errors, [field]: ''});
+    }
   }
 
   const handleSubmit = (event) => {
@@ -48,13 +66,13 @@ const StudentsModal = (props) => {
                   <Col md={10}>
                     <Input type="text" id="name" name="name"
                       placeholder="Name"
-                      value={form.name}
-                      /*valid={errors.firstname === ''}
-                      invalid={errors.firstname !== ''}*/
-                           onChange={handleChange}
-                           onBlur={handleBlur('name')}
+                      value={form.name || ''}
+                      valid={errors.name === ''}
+                      invalid={errors.name !== ''}
+                      onChange={handleChange}
+                      onBlur={handleBlur('name')}
                     />
-                    {/*<FormFeedback>{errors.firstname}</FormFeedback>*/}
+                    <FormFeedback>{errors.name}</FormFeedback>
                   </Col>
                 </FormGroup>
                 <FormGroup row>
@@ -62,13 +80,13 @@ const StudentsModal = (props) => {
                   <Col md={10}>
                     <Input type="email" id="email" name="email"
                            placeholder="Email"
-                      value={form.email}
-                      /*valid={errors.email === ''}
-                      invalid={errors.email !== ''}*/
-                           onChange={handleChange}
-                           onBlur={handleBlur('email')}
+                      value={form.email || ''}
+                      valid={errors.email === ''}
+                      invalid={errors.email !== ''}
+                      onChange={handleChange}
+                      onBlur={handleBlur('email')}
                     />
-                    {/*<FormFeedback>{errors.email}</FormFeedback>*/}
+                    <FormFeedback>{errors.email}</FormFeedback>
                   </Col>
                 </FormGroup>
                 <FormGroup row>
@@ -76,7 +94,7 @@ const StudentsModal = (props) => {
                     <FormGroup>
                       <Label htmlFor="sex">Sex</Label>
                       <Input type="select" id="sex" name="sex"
-                        value={form.sex}
+                        value={form.sex || 'female'}
                         onChange={handleChange}
                       >
                         <option value="female">Female</option>
@@ -87,9 +105,11 @@ const StudentsModal = (props) => {
                   <Col md={{size: 6}}>
                     <FormGroup>
                       <Label htmlFor="birthdate">Birthdate</Label>
-                      <Input type="text" id="birthdate" name="birthdate"
-                        value={form.birthdate}
-                        onChange={handleChange}
+                      <DatePicker
+                        id="birthdate"
+                        name="birthdate"
+                        value={form.birthdate || new Date().toISOString()}
+                        onChange={(value) => handleDateChange(value)}
                       />
                     </FormGroup>
                   </Col>
@@ -99,7 +119,7 @@ const StudentsModal = (props) => {
                     <FormGroup>
                       <Label htmlFor="groupId">Group</Label>
                       <Input type="select" id="groupId" name="groupId"
-                        value={form.groupId}
+                        value={form.groupId || ''}
                         onChange={handleChange}
                       >
                         <RenderSelect items={props.groups} />
@@ -110,7 +130,7 @@ const StudentsModal = (props) => {
                     <FormGroup>
                       <Label htmlFor="cityId">Birthplace</Label>
                       <Input type="select" id="cityId" name="cityId"
-                        value={form.cityId}
+                        value={form.cityId || ''}
                         onChange={handleChange}
                       >
                         <RenderSelect items={props.cities} />

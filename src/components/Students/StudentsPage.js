@@ -16,7 +16,7 @@ const form = {
   age: '',
   sex: '',
   email: '',
-  birthdate: '',
+  birthdate: new Date().toISOString(),
   groupId: '' ,
   cityId: ''
 };
