@@ -10,14 +10,14 @@
 }
 
 .footer{
-  background-color: #D1C4E9;
+  background-color: #dcf5ff;
   margin:0 auto;
   padding: 20px 0 20px 0;
 }
 .jumbotron {
   padding:30px;
   margin:0 auto;
-  background: #9575CD ;
+  background: #4e99dc ;
   color:floralwhite;
 }
 
@@ -28,7 +28,7 @@ address{
 }
 
 .navbar-dark {
-  background-color: #512DA8;
+  background-color: #2f2da8;
 }
 
 .card-header-actions {

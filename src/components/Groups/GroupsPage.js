@@ -4,10 +4,26 @@ import {Breadcrumb, BreadcrumbItem, Card, CardBody, CardHeader} from "reactstrap
 import {Link} from "react-router-dom";
 import GroupsTable from "./GroupsTable";
 import Spinner from "../common/Spinner";
+import * as groupActions from "../../redux/actions/groupActions";
+import * as professorActions from "../../redux/actions/professorActions";
 
 const columns = ['Group', 'Main Professor'];
 
 class GroupsPage extends Component {
+  constructor(props) {
+    super(props);
+    this.handleReload = this.handleReload.bind(this);
+  }
+
+
+  handleReload() {
+    const {professors, getGroups, getProfessors} = this.props;
+    getGroups();
+    if (professors.loadError !== null) {
+      getProfessors();
+    }
+  }
+
   render() {
     const {groups, professors} = this.props;
     return (
@@ -30,6 +46,7 @@ class GroupsPage extends Component {
                 <div className="card-header-actions">
                   <button
                     className="card-header-action btn"
+                    onClick={this.handleReload}
                   >Reload &nbsp;
                     <i className="fa fa-refresh fa-lg" />
                   </button>
@@ -61,4 +78,9 @@ const mapStateToProps = state => {
   };
 }
 
-export default connect(mapStateToProps)(GroupsPage);
+const mapDispatchToProps = dispatch => ({
+  getGroups: () => { dispatch(groupActions.getGroups()) },
+  getProfessors: () => { dispatch(professorActions.getProfessors()) }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(GroupsPage);
