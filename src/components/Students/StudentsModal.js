@@ -29,7 +29,6 @@ const StudentsModal = (props) => {
   }
 
   const handleBlur = field => evt => {
-    debugger;
     if (field === 'name') {
       if (form.name.length < 3)
         setErrors({...errors, [field]: 'Name should be >= 3 characters'});
@@ -46,6 +45,9 @@ const StudentsModal = (props) => {
 
   const handleSubmit = (event) => {
     console.log(form);
+    const {saveStudent, toggle} = props;
+    saveStudent(form);
+    toggle();
     event.preventDefault();
   }
 

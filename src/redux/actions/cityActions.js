@@ -15,13 +15,15 @@ export const citiesLoading = () => ({
   type: actionTypes.CITIES_LOADING
 });
 
-export const getCities = () => dispatch => {
-  dispatch(citiesLoading());
-  return cityApi.getCities()
-    .then(response => {
-      dispatch(getCitiesSuccess(response.data))
-    })
-    .catch(error => {
-      dispatch(getCitiesFailed(error))
-    })
-};
+export function getCities() {
+  return dispatch => {
+    dispatch(citiesLoading());
+    cityApi.getCities()
+      .then(response => {
+        dispatch(getCitiesSuccess(response.data))
+      })
+      .catch(error => {
+        dispatch(getCitiesFailed(error))
+      })
+  }
+}

@@ -15,13 +15,15 @@ export const professorsLoading = () => ({
   type: actionTypes.PROFESSORS_LOADING
 });
 
-export const getProfessors = () => dispatch => {
-  dispatch(professorsLoading());
-  return professorApi.getProfessors()
-    .then(response => {
-      dispatch(getProfessorsSuccess(response.data))
-    })
-    .catch(error => {
-      dispatch(getProfessorsFailed(error))
-    })
-};
+export function getProfessors() {
+  return dispatch => {
+    dispatch(professorsLoading());
+    professorApi.getProfessors()
+      .then(response => {
+        dispatch(getProfessorsSuccess(response.data))
+      })
+      .catch(error => {
+        dispatch(getProfessorsFailed(error))
+      })
+  }
+}

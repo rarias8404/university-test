@@ -15,13 +15,38 @@ export const studentsLoading = () => ({
   type: actionTypes.STUDENTS_LOADING
 });
 
-export const getStudents = () => dispatch => {
-  dispatch(studentsLoading());
-  return studentApi.getStudents()
-    .then(response => {
-      dispatch(getStudentsSuccess(response.data));
-    })
-    .catch(error => {
-      dispatch(getStudentsFailed(error));
-    })
-};
+export const createStudentSuccess = student => ({
+  type: actionTypes.CREATE_STUDENT_SUCCESS,
+  student
+});
+
+export const createStudentFailed = error => ({
+  type: actionTypes.CREATE_STUDENT_FAILED,
+  error: error.message
+});
+
+export function getStudents() {
+  return dispatch => {
+    dispatch(studentsLoading());
+    studentApi.getStudents()
+      .then(response => {
+        dispatch(getStudentsSuccess(response.data));
+      })
+      .catch(error => {
+        dispatch(getStudentsFailed(error));
+      })
+  }
+}
+
+export function saveStudent(student) {
+  return dispatch => {
+    dispatch(studentsLoading());
+    studentApi.addStudent(student)
+      .then(() => {
+        dispatch(createStudentSuccess(student));
+      })
+      .catch(error => {
+        dispatch(createStudentFailed(error));
+      })
+  }
+}

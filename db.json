@@ -1,44 +1,54 @@
 {
   "students": [
     {
-      "id": 1 ,
+      "id": 1,
       "name": "Pepe",
       "age": 22,
       "sex": "male",
       "email": "pepe@test.net",
       "birthdate": "20/02/1998",
-      "groupId": 1 ,
+      "groupId": 1,
       "cityId": 2
     },
     {
-      "id": 2 ,
+      "id": 2,
       "name": "Juan",
       "age": 21,
       "sex": "male",
       "email": "juan@test.net",
       "birthdate": "15/04/1999",
-      "groupId": 1 ,
+      "groupId": 1,
       "cityId": 1
     },
     {
-      "id": 3 ,
+      "id": 3,
       "name": "Jane",
       "age": 22,
       "sex": "female",
       "email": "jane@test.net",
       "birthdate": "03/05/1998",
-      "groupId": 2 ,
+      "groupId": 2,
       "cityId": 3
     },
     {
-      "id": 4 ,
+      "id": 4,
       "name": "John",
       "age": 23,
       "sex": "male",
       "email": "john@test.net",
       "birthdate": "20/10/1997",
-      "groupId": 3 ,
+      "groupId": 3,
       "cityId": 1
+    },
+    {
+      "id": 5,
+      "name": "Naty",
+      "age": 10,
+      "sex": "female",
+      "email": "naty@gmail.com",
+      "birthdate": "2010-01-07",
+      "groupId": "1",
+      "cityId": 3
     }
   ],
   "groups": [
@@ -65,29 +75,29 @@
   ],
   "cities": [
     {
-      "id": 1 ,
+      "id": 1,
       "name": "Habana"
     },
     {
-      "id": 2 ,
+      "id": 2,
       "name": "Matanzas"
     },
     {
-      "id": 3 ,
+      "id": 3,
       "name": "Santiago de Cuba"
     }
   ],
   "professors": [
     {
-      "id": 1 ,
+      "id": 1,
       "name": "Julio"
     },
     {
-      "id": 2 ,
+      "id": 2,
       "name": "Martha"
     },
     {
-      "id": 3 ,
+      "id": 3,
       "name": "Ana"
     }
   ]

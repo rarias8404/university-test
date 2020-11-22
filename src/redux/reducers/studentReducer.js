@@ -15,6 +15,12 @@ export const students = (state = initialState, action) => {
       return {...state, loading: false, students: [], loadError: action.error}
     case actionTypes.STUDENTS_LOADING:
       return {...state, loading: true, students: [], loadError: null}
+    case actionTypes.CREATE_STUDENT_SUCCESS:
+      const student = {...action.student};
+      student.id = state.students.length + 1;
+      return {...state, loading: false, students: [...state.students, student], dataError: null}
+    case actionTypes.CREATE_STUDENT_FAILED:
+      return {...state, loading: false, dataError: action.error}
     default:
       return state;
   }

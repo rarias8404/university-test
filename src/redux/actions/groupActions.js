@@ -15,13 +15,15 @@ export const groupsLoading = () => ({
   type: actionTypes.GROUPS_LOADING
 });
 
-export const getGroups = () => dispatch => {
-  dispatch(groupsLoading());
-  return groupApi.getGroups()
-    .then(response => {
-      dispatch(getGroupsSuccess(response.data))
-    })
-    .catch(error => {
-      dispatch(getStudentsFailed(error))
-    })
-};
+export function getGroups () {
+  return dispatch => {
+    dispatch(groupsLoading());
+    groupApi.getGroups()
+      .then(response => {
+        dispatch(getGroupsSuccess(response.data))
+      })
+      .catch(error => {
+        dispatch(getStudentsFailed(error))
+      })
+  }
+}

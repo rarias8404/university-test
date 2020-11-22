@@ -30,6 +30,7 @@ class StudentsPage extends Component {
     }
     this.handleReload = this.handleReload.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
+    // this.saveStudent = this.saveStudent.bind(this);
   }
 
   handleReload() {
@@ -50,6 +51,10 @@ class StudentsPage extends Component {
       student
     }));
   }
+
+  /*saveStudent(student) {
+    this.props.saveStudent(student);
+  }*/
 
   render() {
     const {students, groups, cities} = this.props;
@@ -107,6 +112,7 @@ class StudentsPage extends Component {
           student={student}
           groups={groups.groups}
           cities={cities.cities}
+          saveStudent={this.props.saveStudent}
         />
       </div>
     );
@@ -121,10 +127,11 @@ const mapStateToProps = state => {
   };
 }
 
-const mapDispatchToProps = dispatch => ({
-  getStudents: () => { dispatch(studentActions.getStudents()) },
-  getGroups: () => { dispatch(groupActions.getGroups()) },
-  getCities: () => { dispatch(cityActions.getCities()) }
-});
+const mapDispatchToProps = {
+  getStudents: studentActions.getStudents,
+  saveStudent: studentActions.saveStudent,
+  getGroups: groupActions.getGroups,
+  getCities: cityActions.getCities
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(StudentsPage);
