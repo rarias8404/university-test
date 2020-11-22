@@ -17,7 +17,7 @@ const StudentsTableData = ({students, groups, cities, toggle}) => {
           <td>
             <button
               className="card-header-action btn text-primary"
-              onClick={toggle}
+              onClick={() => toggle(student)}
             >
               <i className="fa fa-edit fa-md" />
             </button>

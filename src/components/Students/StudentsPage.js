@@ -10,12 +10,23 @@ import * as groupActions from "../../redux/actions/groupActions";
 import * as cityActions from "../../redux/actions/cityActions";
 
 const columns = ['Name', 'Age', 'Sex', 'Email', 'Birthdate', 'Group', 'Birthplace'];
+const form = {
+  id: null ,
+  name: '',
+  age: '',
+  sex: '',
+  email: '',
+  birthdate: '',
+  groupId: '' ,
+  cityId: ''
+};
 
 class StudentsPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isModalOpen: false
+      isModalOpen: false,
+      student: {...form}
     }
     this.handleReload = this.handleReload.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
@@ -32,16 +43,17 @@ class StudentsPage extends Component {
     }
   }
 
-  toggleModal() {
+  toggleModal(data = form) {
+    let student = {...data};
     this.setState(prevState => ({
-      isModalOpen: !prevState.isModalOpen
+      isModalOpen: !prevState.isModalOpen,
+      student
     }));
   }
 
-
   render() {
     const {students, groups, cities} = this.props;
-    const {isModalOpen} = this.state;
+    const {isModalOpen, student} = this.state;
     return (
       <div className="container">
         <div className="row">
@@ -68,7 +80,7 @@ class StudentsPage extends Component {
                   </button>
                   <button
                     className="card-header-action btn"
-                    onClick={this.toggleModal}
+                    onClick={() => this.toggleModal()}
                   >Add &nbsp;
                     <i className="fa fa-plus-square fa-lg" />
                   </button>
@@ -89,7 +101,13 @@ class StudentsPage extends Component {
             </Card>
           </div>
         </div>
-        <StudentsModal isOpen={isModalOpen} toggle={this.toggleModal} />
+        <StudentsModal
+          isOpen={isModalOpen}
+          toggle={this.toggleModal}
+          student={student}
+          groups={groups.groups}
+          cities={cities.cities}
+        />
       </div>
     );
   }
