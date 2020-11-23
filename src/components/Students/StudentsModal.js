@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import { PropTypes } from "prop-types";
 import {Modal, ModalHeader, ModalBody, Form, FormGroup, FormFeedback, Label, Col, Input, Button} from 'reactstrap';
 import DatePicker from "reactstrap-date-picker";
 
@@ -93,7 +94,7 @@ const StudentsModal = (props) => {
                   <Col md={10}>
                     <Input type="text" id="name" name="name"
                       placeholder="Name"
-                      value={form.name || ''}
+                      value={form.name}
                       valid={errors.name === ''}
                       invalid={errors.name !== ''}
                       onChange={handleChange}
@@ -107,7 +108,7 @@ const StudentsModal = (props) => {
                   <Col md={10}>
                     <Input type="email" id="email" name="email"
                            placeholder="Email"
-                      value={form.email || ''}
+                      value={form.email}
                       valid={errors.email === ''}
                       invalid={errors.email !== ''}
                       onChange={handleChange}
@@ -121,7 +122,7 @@ const StudentsModal = (props) => {
                     <FormGroup>
                       <Label htmlFor="sex">Sex</Label>
                       <Input type="select" id="sex" name="sex"
-                        value={form.sex || 'female'}
+                        value={form.sex}
                         onChange={handleChange}
                       >
                         <option value="female">Female</option>
@@ -134,8 +135,7 @@ const StudentsModal = (props) => {
                       <Label htmlFor="birthdate">Birthdate</Label>
                       <DatePicker
                         id="birthdate"
-                        name="birthdate"
-                        value={form.birthdate || new Date().toISOString()}
+                        value={form.birthdate}
                         onChange={(value) => handleDateChange(value)}
                       />
                     </FormGroup>
@@ -146,7 +146,7 @@ const StudentsModal = (props) => {
                     <FormGroup>
                       <Label htmlFor="groupId">Group</Label>
                       <Input type="select" id="groupId" name="groupId"
-                        value={form.groupId || ''}
+                        value={form.groupId}
                         onChange={handleChange}
                       >
                         <RenderSelect items={props.groups} />
@@ -157,7 +157,7 @@ const StudentsModal = (props) => {
                     <FormGroup>
                       <Label htmlFor="cityId">Birthplace</Label>
                       <Input type="select" id="cityId" name="cityId"
-                        value={form.cityId || ''}
+                        value={form.cityId}
                         onChange={handleChange}
                       >
                         <RenderSelect items={props.cities} />
@@ -179,6 +179,23 @@ const StudentsModal = (props) => {
       </div>
     </div>
   );
+};
+
+StudentsModal.propTypes = {
+  student: PropTypes.object.isRequired
+};
+
+StudentsModal.defaultProps = {
+  student: {
+    id: null ,
+    name: '',
+    age: '',
+    sex: 'female',
+    email: '',
+    birthdate: new Date().toISOString(),
+    groupId: 1,
+    cityId: 1
+  }
 };
 
 export default StudentsModal;

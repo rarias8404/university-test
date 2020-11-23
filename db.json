@@ -39,6 +39,16 @@
       "birthdate": "1997-10-20",
       "groupId": 3,
       "cityId": 1
+    },
+    {
+      "id": 5,
+      "name": "Naty",
+      "age": 10,
+      "sex": "male",
+      "email": "naty@gmail.com",
+      "birthdate": "2010-01-03",
+      "groupId": 1,
+      "cityId": "3"
     }
   ],
   "groups": [

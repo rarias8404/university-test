@@ -14,10 +14,10 @@ const form = {
   id: null ,
   name: '',
   age: '',
-  sex: 'male',
+  sex: 'female',
   email: '',
   birthdate: new Date().toISOString(),
-  groupId: 1 ,
+  groupId: 1,
   cityId: 1
 };
 
