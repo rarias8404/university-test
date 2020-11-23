@@ -60,11 +60,11 @@ const mapStateToProps = state => {
   };
 }
 
-const mapDispatchToProps = dispatch => ({
-  getStudents: () => { dispatch(studentActions.getStudents()) },
-  getGroups: () => { dispatch(groupActions.getGroups()) },
-  getCities: () => { dispatch(cityActions.getCities()) },
-  getProfessors: () => { dispatch(professorActions.getProfessors()) },
-});
+const mapDispatchToProps = {
+  getStudents: studentActions.getStudents,
+  getGroups: groupActions.getGroups,
+  getCities: cityActions.getCities,
+  getProfessors: professorActions.getProfessors
+};
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(MainPage));

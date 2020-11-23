@@ -10,9 +10,10 @@ const Footer = () => {
             <h5>Links</h5>
             <ul className="list-unstyled">
               <li><Link to="/home">Home</Link></li>
-              <li><Link to="/aboutus">About</Link></li>
-              <li><Link to="/menu">Menu</Link></li>
-              <li><Link to="/contactus">Contact</Link></li>
+              <li><Link to="/students">Students</Link></li>
+              <li><Link to="/groups">Groups</Link></li>
+              <li><Link to="/about-us">About</Link></li>
+              <li><Link to="/contact-us">Contact</Link></li>
             </ul>
           </div>
           <div className="col-7 col-sm-5">
@@ -39,7 +40,7 @@ const Footer = () => {
         </div>
         <div className="row justify-content-center">
           <div className="col-auto">
-            <p>© Copyright 2020 University of Brooklyn</p>
+            <p>© Copyright 2020 University Test</p>
           </div>
         </div>
       </div>

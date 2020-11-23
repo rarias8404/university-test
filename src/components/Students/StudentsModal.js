@@ -45,6 +45,7 @@ const StudentsModal = (props) => {
       else setErrors({...errors, [field]: ''});
     }
     if (field === 'email') {
+      //se podria chequear que el email sea único
       if (!isValidEmail())
         setErrors({...errors, [field]: 'Invalid Email'});
       else setErrors({...errors, [field]: ''});
@@ -185,7 +186,12 @@ const StudentsModal = (props) => {
 };
 
 StudentsModal.propTypes = {
-  student: PropTypes.object.isRequired
+  student: PropTypes.object,
+  isOpen: PropTypes.bool.isRequired,
+  toggle: PropTypes.func.isRequired,
+  groups: PropTypes.array,
+  cities: PropTypes.array,
+  saveStudent: PropTypes.func.isRequired
 };
 
 StudentsModal.defaultProps = {
@@ -198,7 +204,9 @@ StudentsModal.defaultProps = {
     birthdate: new Date().toISOString(),
     groupId: 1,
     cityId: 1
-  }
+  },
+  groups: [],
+  cities: []
 };
 
 export default StudentsModal;

@@ -49,16 +49,6 @@
       "birthdate": "2010-01-07",
       "groupId": 1,
       "cityId": "3"
-    },
-    {
-      "id": 6,
-      "name": "Darlen",
-      "age": 34,
-      "sex": "female",
-      "email": "darlen@test.net",
-      "birthdate": "1986-06-09",
-      "groupId": "4",
-      "cityId": "3"
     }
   ],
   "groups": [
