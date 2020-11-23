@@ -2,7 +2,7 @@ import React from 'react';
 import {Table} from "reactstrap";
 import {renderTableHeader, getItemNameById} from "../../shared/helpers";
 
-const StudentsTableData = ({students, groups, cities, toggle, deleteStudent}) => {
+const StudentsTableBody = ({students, groups, cities, toggle, deleteStudent}) => {
   return (
     students.loadError === null ? (
       students.students.map((student) => (
@@ -50,7 +50,7 @@ const StudentsTable = ({columns, students, groups, cities, toggle, deleteStudent
         </tr>
       </thead>
       <tbody>
-        <StudentsTableData
+        <StudentsTableBody
           students={students}
           groups={groups}
           cities={cities}

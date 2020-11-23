@@ -21,7 +21,7 @@ class MainPage extends Component {
   }
 
   render() {
-    const {groups, students, professors} = this.props;
+    const {groups, students, professors, cities} = this.props;
 
     const GroupWithId = ({match}) => {
       const group = groups.groups.filter(group => parseInt(group.id, 10) === parseInt(match.params.groupId, 10))[0];
@@ -29,7 +29,9 @@ class MainPage extends Component {
         <GroupDetails
           group={group}
           students={students.students.filter(student => parseInt(student.groupId, 10) === parseInt(match.params.groupId, 10))}
-          professors={professors.professors.filter(professor => parseInt(professor.id, 10) === parseInt(group.professorId, 10))[0]}
+          professor={professors.professors.filter(professor => parseInt(professor.id, 10) === parseInt(group.professorId, 10))[0]}
+          cities={cities}
+          loading={students.loading || groups.loading || cities.loading || professors.loading}
         />
       );
     }
@@ -54,6 +56,7 @@ const mapStateToProps = state => {
     students: state.students,
     groups: state.groups,
     professors: state.professors,
+    cities: state.cities,
   };
 }
 
