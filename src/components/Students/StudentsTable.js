@@ -32,7 +32,7 @@ const StudentsTableData = ({students, groups, cities, toggle, deleteStudent}) =>
       ))
     ) : (
       <tr>
-        <td className="text-center text-danger font-weight-bold" colSpan={8}>{students.loadError}</td>
+        <td className="text-center text-danger font-weight-bold" colSpan={8}>There are no records to display</td>
       </tr>
     )
   );

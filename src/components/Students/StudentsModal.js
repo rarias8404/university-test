@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { PropTypes } from "prop-types";
 import {Modal, ModalHeader, ModalBody, Form, FormGroup, FormFeedback, Label, Col, Input, Button} from 'reactstrap';
 import DatePicker from "reactstrap-date-picker";
+import {getAge} from "../../shared/helpers";
 
 const RenderSelect = ({items}) => (
   items.map(item => (
@@ -30,7 +31,7 @@ const StudentsModal = (props) => {
   }
 
   const isValidName = () => {
-    return !(form.name.length < 3 || form.name.length > 20);
+    return form.name.length >= 3 && /^[A-Za-z ]+$/.test(form.name);
   }
 
   const isValidEmail = () => {
@@ -40,7 +41,7 @@ const StudentsModal = (props) => {
   const handleBlur = field => evt => {
     if (field === 'name') {
       if (!isValidName())
-        setErrors({...errors, [field]: 'Name should be between 3 and 20 characters'});
+        setErrors({...errors, [field]: 'The name must be greater than 2 characters and contain only letters'});
       else setErrors({...errors, [field]: ''});
     }
     if (field === 'email') {
@@ -60,11 +61,10 @@ const StudentsModal = (props) => {
     if (isValidName() && isValidEmail()) {
       const student = {...form};
       student.birthdate = parseDate(student.birthdate);
-      //calcular edad a partir de la fecha de nacimiento
-      student.age = 10;
+      student.age = getAge(student.birthdate);
       saveStudent(student);
+      toggle();
     }
-    toggle();
     event.preventDefault();
   }
 
@@ -167,8 +167,11 @@ const StudentsModal = (props) => {
                 </FormGroup>
                 <FormGroup row>
                   <Col>
-                    <Button type="submit" color="primary">
+                    <Button type="submit" color="primary" size="sm">
                       Save
+                    </Button>{' '}
+                    <Button color="danger" size="sm" onClick={handleToggle}>
+                      Cancel
                     </Button>
                   </Col>
                 </FormGroup>

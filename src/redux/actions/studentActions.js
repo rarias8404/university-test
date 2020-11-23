@@ -55,6 +55,7 @@ export function getStudents() {
       })
       .catch(error => {
         dispatch(getStudentsFailed(error));
+        toastr.error('', error.message);
       })
   }
 }
