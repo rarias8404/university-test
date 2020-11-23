@@ -38,27 +38,32 @@ const StudentsModal = (props) => {
 
   const handleBlur = field => evt => {
     if (field === 'name') {
-      if (!isValidName(field))
+      if (!isValidName())
         setErrors({...errors, [field]: 'Name should be between 3 and 20 characters'});
       else setErrors({...errors, [field]: ''});
     }
     if (field === 'email') {
-      if (!isValidEmail(field))
+      if (!isValidEmail())
         setErrors({...errors, [field]: 'Invalid Email'});
       else setErrors({...errors, [field]: ''});
     }
   }
 
+  const parseDate = (date) => {
+    return new Intl.DateTimeFormat('fr-ca', { year: 'numeric', month: 'numeric', day: 'numeric'})
+      .format(new Date(Date.parse(date)))
+  }
+
   const handleSubmit = (event) => {
+    const {saveStudent, toggle} = props;
     if (isValidName() && isValidEmail()) {
       const student = {...form};
+      student.birthdate = parseDate(student.birthdate);
       //calcular edad a partir de la fecha de nacimiento
-      student.age = 30;
-      //formatear fecha
-      const {saveStudent, toggle} = props;
+      student.age = 10;
       saveStudent(student);
-      toggle();
     }
+    toggle();
     event.preventDefault();
   }
 
