@@ -17,12 +17,14 @@ const StudentsTableData = ({students, groups, cities, toggle, deleteStudent}) =>
           <td>
             <button
               className="card-header-action btn text-primary"
+              title="Edit"
               onClick={() => toggle(student)}
             >
               <i className="fa fa-edit fa-md" />
             </button>
             <button
               className="card-header-action btn text-danger"
+              title="Delete"
               onClick={() => deleteStudent(student.id)}
             >
               <i className="fa fa-trash fa-md" />

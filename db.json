@@ -56,8 +56,8 @@
       "age": 34,
       "sex": "female",
       "email": "darlen@test.net",
-      "birthdate": "1986-06-06",
-      "groupId": 1,
+      "birthdate": "1986-06-09",
+      "groupId": "4",
       "cityId": "3"
     }
   ],

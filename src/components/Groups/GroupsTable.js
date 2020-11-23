@@ -1,5 +1,6 @@
 import React from 'react';
 import {Table} from "reactstrap";
+import {Link} from "react-router-dom";
 import {getItemNameById, renderTableHeader} from "../../shared/helpers";
 
 const renderData = (groups, professors) => {
@@ -10,8 +11,11 @@ const renderData = (groups, professors) => {
           <td>{group.name}</td>
           <td>{getItemNameById(group.professorId, professors)}</td>
           <td>
-            <button className="card-header-action btn text-primary"><i className="fa fa-edit fa-md" /></button>
-            <button className="card-header-action btn text-danger"><i className="fa fa-trash fa-md" /></button>
+            <Link to={`groups/${group.id}`}>
+              <span className="card-header-action btn text-primary" title="Details"><i className="fa fa-list fa-md" /></span>
+            </Link>
+            <button className="card-header-action btn text-primary" title="Edit"><i className="fa fa-edit fa-md" /></button>
+            <button className="card-header-action btn text-danger" title="Delete"><i className="fa fa-trash fa-md" /></button>
           </td>
         </tr>
       ))
