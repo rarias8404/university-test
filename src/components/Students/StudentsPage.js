@@ -21,7 +21,7 @@ const form = {
   cityId: 1
 };
 
-class StudentsPage extends Component {
+export class StudentsPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
