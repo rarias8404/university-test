@@ -1,5 +1,6 @@
 import * as actionTypes from  './actionTypes';
 import * as studentApi from '../../api/studentApi';
+import {toastr} from 'react-redux-toastr'
 
 export const getStudentsSuccess = students => ({
   type: actionTypes.GET_STUDENTS_SUCCESS,
@@ -65,18 +66,22 @@ export function saveStudent(student) {
       studentApi.addStudent(student)
         .then(() => {
           dispatch(createStudentSuccess(student));
+          toastr.success('', 'Student created successfully');
         })
         .catch(error => {
           dispatch(createStudentFailed(error));
+          toastr.error('', 'Error creating student');
         })
     }
     else {
       studentApi.updateStudent(student)
         .then(() => {
           dispatch(updateStudentSuccess(student));
+          toastr.success('', 'Student updated successfully');
         })
         .catch(error => {
           dispatch(updateStudentFailed(error));
+          toastr.error('', 'Error updating student');
         })
     }
   }
@@ -88,9 +93,11 @@ export function deleteStudent(id) {
     studentApi.deleteStudent(id)
       .then(() => {
         dispatch(deleteStudentSuccess(id));
+        toastr.success('', 'Student deleted successfully');
       })
       .catch(error => {
         dispatch(deleteStudentFailed(error));
+        toastr.error('', 'Error deleting student');
       })
   }
 }

@@ -4,6 +4,7 @@ import {BrowserRouter} from "react-router-dom";
 import { Provider } from "react-redux";
 import {store} from "./redux/store";
 import MainPage from "./components/MainPage";
+import ReduxToastr from 'react-redux-toastr'
 
 class App extends Component {
   render() {
@@ -11,6 +12,7 @@ class App extends Component {
       <Provider store={store}>
         <BrowserRouter>
           <MainPage />
+          <ReduxToastr timeOut={4000} />
         </BrowserRouter>
       </Provider>
     );

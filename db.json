@@ -46,7 +46,17 @@
       "age": 10,
       "sex": "male",
       "email": "naty@gmail.com",
-      "birthdate": "2010-01-03",
+      "birthdate": "2009-12-29",
+      "groupId": 1,
+      "cityId": "1"
+    },
+    {
+      "id": 6,
+      "name": "Darlen",
+      "age": 10,
+      "sex": "female",
+      "email": "darlen@test.net",
+      "birthdate": "2020-11-22",
       "groupId": 1,
       "cityId": "3"
     }
