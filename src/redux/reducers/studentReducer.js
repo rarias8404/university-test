@@ -14,13 +14,22 @@ export const students = (state = initialState, action) => {
     case actionTypes.GET_STUDENTS_FAILED:
       return {...state, loading: false, students: [], loadError: action.error}
     case actionTypes.STUDENTS_LOADING:
-      // return {...state, loading: true, students: [], loadError: null}
       return {...state, loading: true, loadError: null}
     case actionTypes.CREATE_STUDENT_SUCCESS:
       const student = {...action.student};
       student.id = state.students.length + 1;
       return {...state, loading: false, students: [...state.students, student], dataError: null}
+    case actionTypes.UPDATE_STUDENT_SUCCESS:
+      const newState = [...state.students];
+      newState.forEach(student => {
+        if (parseInt(student.id, 10) === parseInt(action.student.id, 10)) {
+          Object.assign(student, action.student);
+        }
+      });
+      return {...state, loading: false, students: newState, dataError: null};
     case actionTypes.CREATE_STUDENT_FAILED:
+    case actionTypes.UPDATE_STUDENT_FAILED:
+    case actionTypes.DELETE_STUDENT_FAILED:
       return {...state, loading: false, dataError: action.error}
     case actionTypes.DELETE_STUDENT_SUCCESS:
       let students = [...state.students];

@@ -3,12 +3,12 @@
     {
       "id": 1,
       "name": "Pepe",
-      "age": 22,
+      "age": 10,
       "sex": "male",
       "email": "pepe@test.net",
-      "birthdate": "1998-02-20",
+      "birthdate": "1998-02-19",
       "groupId": 1,
-      "cityId": 2
+      "cityId": "3"
     },
     {
       "id": 2,
@@ -39,26 +39,6 @@
       "birthdate": "1997-10-20",
       "groupId": 3,
       "cityId": 1
-    },
-    {
-      "id": 5,
-      "name": "Naty",
-      "age": 30,
-      "sex": "female",
-      "email": "naty@gmail.com",
-      "birthdate": "2010-01-07",
-      "groupId": "1",
-      "cityId": "3"
-    },
-    {
-      "id": 6,
-      "name": "Darlen",
-      "age": 10,
-      "sex": "female",
-      "email": "darlen@test.net",
-      "birthdate": "1998-11-23",
-      "groupId": "4",
-      "cityId": "1"
     }
   ],
   "groups": [
