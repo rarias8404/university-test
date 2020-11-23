@@ -1,5 +1,6 @@
 import * as actionTypes from  './actionTypes';
 import * as groupApi from '../../api/groupApi';
+import {toastr} from "react-redux-toastr";
 
 export const getGroupsSuccess = groups => ({
   type: actionTypes.GET_GROUPS_SUCCESS,
@@ -23,7 +24,8 @@ export function getGroups () {
         dispatch(getGroupsSuccess(response.data))
       })
       .catch(error => {
-        dispatch(getStudentsFailed(error))
+        dispatch(getStudentsFailed(error));
+        toastr.error('', error.message);
       })
   }
 }

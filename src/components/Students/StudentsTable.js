@@ -4,7 +4,7 @@ import {renderTableHeader, getItemNameById} from "../../shared/helpers";
 
 const StudentsTableBody = ({students, groups, cities, toggle, deleteStudent}) => {
   return (
-    students.loadError === null ? (
+    students.loadError === null && students.students.length > 0 ? (
       students.students.map((student) => (
         <tr key={student.id}>
           <td>{student.name}</td>

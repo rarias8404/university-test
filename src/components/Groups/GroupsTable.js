@@ -5,7 +5,7 @@ import {getItemNameById, renderTableHeader} from "../../shared/helpers";
 
 const renderData = (groups, professors) => {
   return (
-    groups.loadError === null ? (
+    groups.loadError === null && groups.groups.length > 0 ? (
       groups.groups.map((group) => (
         <tr key={group.id}>
           <td>{group.name}</td>
@@ -21,7 +21,7 @@ const renderData = (groups, professors) => {
       ))
     ) : (
       <tr>
-        <td className="text-center text-danger font-weight-bold" colSpan={8}>{groups.loadError}</td>
+        <td className="text-center text-danger font-weight-bold" colSpan={3}>There are no records to display</td>
       </tr>
     )
   );
